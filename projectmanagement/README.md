@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+Run mailcatcher: Simply run gem install mailcatcher then mailcatcher to get started.
+Run guard-livereload: Simply run guard init livereload then bundle exec guard
