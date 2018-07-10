@@ -11,11 +11,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    #@tasks = Task.where(project_id: @project).order("created_at DESC")
   end
 
   # GET /projects/new
   def new
-    @project = Project.new
+    #@project = Project.new
+    @project = current_user.projects.build
   end
 
   # GET /projects/1/edit
@@ -25,7 +27,8 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+   # @project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
 
     respond_to do |format|
       if @project.save

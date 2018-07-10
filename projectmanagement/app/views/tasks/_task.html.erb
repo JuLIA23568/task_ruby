@@ -1,21 +1,41 @@
- <p>
-    <strong>Title:</strong>
-    <%= task.title %>
-  </p>
- 
-  <p>
-    <strong>Description:</strong>
-    <%= task.description %>
-  </p>
-  <p>
-    <strong>Status:</strong>
-    <%= task.status %>
-  </p>
+<div class="container">
+<section class="articles">
 
+<div class="column is-8 is-offset-2">
 
-<p>
-  <%= link_to 'Destroy', [task.project, task],
+<div class="card article">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content has-text-centered">
+                               <p class="title article-title">
+                                <%= task.title %>
+                              </p>
+                                <div class="tags has-addons level-item">
+                                    <span class="tag is-rounded is-info"> Status </span>
+                                    <span class="tag is-rounded"><%= task.status %></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content article-body">
+                            <p> <%= task.description %> </p>
+                            <p> <%= task.status %> </p>
+                            
+                        </div>
+                        
+            <div class="media-content has-text-centered">
+               <% if current_user && current_user.admin %>
+
+               <%= link_to 'Delete task', [task.project, task],
                method: :delete,
-               data: { confirm: 'Are you sure?' } %>
- <%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
-</p>
+               data: { confirm: 'Are you sure?' } , :class => "button is-danger is-medium" %>
+ 
+              <% end %>
+              <%= link_to 'Edit task', edit_project_task_path(task.project, task), :class => "button is-primary is-medium" %></td>
+            </div>
+
+                  </div>
+                <!-- END ARTICLE -->
+            </div>
+
+ </section>
+    </div>

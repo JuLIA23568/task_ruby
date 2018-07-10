@@ -8,9 +8,11 @@
                         <div class="media">
                             <div class="media-content has-text-centered">
                             	 <p class="title article-title"> <%= @project.name %></p>
+
                                 <div class="tags has-addons level-item">
                                     <span class="tag is-rounded is-info"> Start date </span>
                                     <span class="tag is-rounded"><%= @project.start_date %></span>
+                                    <span class="tag "><%= @project.user.email %></span>
                                 </div>
                             </div>
                         </div>
@@ -28,20 +30,26 @@
 							<%= link_to 'Edit', edit_project_path(@project), :class => "button is-primary is-medium" %> 
 							<% end %>
 						</div>
-
+<span class="tag ">Created: <%= @project.user.first_name %> <%= @project.user.last_name %></span>
                 	</div>
                 <!-- END ARTICLE -->
             </div>
 
 
 
-<h2 class="title">My tasks</h2>
-<h3 class="subtitle"><%= @project.tasks.count %> tasks </h3>
+<h2 class="title has-text-centered">Your Tasks: <%= @project.tasks.count %></h2>
+<br />
+<% if @project.tasks.empty? %>
+<h4 class="title has-text-centered">It looks like you don't have any tasks. Why not create new one?</h4>
+<% else %>
 <%= render @project.tasks %>
+<% end %>
+<br />
+<div class="box has-text-centered">
+   <h2 class="title">Add a task</h2>
+<%= render 'tasks/form' %> 
+</div>
 
-
-<h2>Add a task:</h2>
-<%= render 'tasks/form' %>
 
 
 

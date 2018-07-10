@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
+  before_action :find_project
+  before_action :find_task, only: [:edit, :update] 
   before_action :set_task, only: [:show, :destroy]
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index, :edit, :update]
 
 
  def index
@@ -10,21 +12,23 @@ class TasksController < ApplicationController
    def show
    end
 
- def edit
-   
+  def edit
   end
 
 
   def create
     @project = Project.find(params[:project_id])
     @task = @project.tasks.create(task_params)
+    @task.user_id = current_user.id
+    @task.save
 
-  
-        redirect_to project_path(@project)
+    if @task.save
+       redirect_to project_path(@project)
+       else
+        render'new'
+    end 
         
   end
-
- 
 
   def destroy
     @project = Project.find(params[:project_id])
@@ -34,11 +38,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.create(task_params)
- 
+    
     if @task.update(task_params)
-      redirect_to @task
+      redirect_to project_path(@project)
     else
       render 'edit'
     end
@@ -47,6 +49,15 @@ class TasksController < ApplicationController
 
 
   private
+
+  def find_project
+   @project = Project.find(params[:project_id])  
+  end
+
+  def find_task
+    @task = @project.tasks.find(params[:id])
+  end
+
    def set_task
       @task = Task.find(params[:id])
     end

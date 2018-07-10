@@ -1,22 +1,47 @@
+<div class="container">
+<section class="articles">
 
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+<div class="column is-8 is-offset-2">
 
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
+<div class="card article">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content has-text-centered">
+                            	 <p class="title article-title">
+                            	  <%= @task.title %>
+                            	</p>
+                                <div class="tags has-addons level-item">
+                                    <span class="tag is-rounded is-info"> Created </span>
+                                    <span class="tag is-rounded"><%= @task.created_at %></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content article-body">
+                            <p> <%= @task.description %> </p>
+                            <p> <%= @task.status %> </p>
+                            
+                        </div>
+                        
+ 						<div class="media-content has-text-centered">
+ 							 <% if current_user %>
+							<%= link_to 'Edit', edit_project_task_path(@task), :class => "button is-primary is-medium" %> 
+							<% end %>
+						</div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
+                	</div>
+                <!-- END ARTICLE -->
+            </div>
 
-<p>
-  <strong>Project:</strong>
-  <%= @task.project %>
-</p>
 
-<%= link_to 'Edit', edit_project_task_path(@task) %> |
-<%= link_to 'Back', project_tasks_path %>
+
+
+
+
+
+
+
+
+
+<%= link_to 'Back', project_tasks_path, :class => "button is-link"%>
+ </section>
+    </div>
