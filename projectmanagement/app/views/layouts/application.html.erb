@@ -15,7 +15,12 @@
 
 <nav class="navbar is-link" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
+    <% unless current_page?(root_path) %>
     <%= link_to root_path, class: "navbar-item" do %>
+    <h1 class="title is-5 has-text-white">Home</h1>
+    <% end %>
+    <% end %>
+     <%= link_to projects_path, class: "navbar-item" do %>
     <h1 class="title is-5 has-text-white">Projects</h1>
     <% end %>
     <div class="navbar-burger burger" data-target="navbar">

@@ -1,0 +1,21 @@
+ <p>
+    <strong>Title:</strong>
+    <%= task.title %>
+  </p>
+ 
+  <p>
+    <strong>Description:</strong>
+    <%= task.description %>
+  </p>
+  <p>
+    <strong>Status:</strong>
+    <%= task.status %>
+  </p>
+
+
+<p>
+  <%= link_to 'Destroy', [task.project, task],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+ <%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
+</p>

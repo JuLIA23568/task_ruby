@@ -1,6 +1,12 @@
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+<% if flash[:notice] %>
+<div class="notification is-success global-notification">
+  <p class="notice"><%= notice %></p>
+</div>
 <% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
+
+<% if flash[:alert] %>
+<div class="notification is-danger global-notification">
+<p class="alert"><%= alert %></p>
+	
+</div>
+  <% end %>

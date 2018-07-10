@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  
   as :user do
       put '/user/confirmation' => 'confirmations#update', :via => :patch, :as => :update_user_confirmation
   end
@@ -10,7 +11,9 @@ Rails.application.routes.draw do
   }
 
   root to: "pages#home"
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
   
 
 
